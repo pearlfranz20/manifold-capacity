@@ -1,0 +1,13 @@
+[cover] done in 54.1s
+/home/claude/manifold-capacity-repro/mcap/simulate.py:35: UserWarning: Solution may be inaccurate. Try another solver, adjusting the solver settings, or solve with verbose=True for more information.
+  prob.solve(solver=cp.CLARABEL)
+[spheres] done in 60.1s
+[point_clouds] done in 107.1s
+[speed] done in 1.1s
+[correlated_centers] done in 30.2s
+[untangle] done in 6.8s
+total 259.3s
+
+real	4m20.803s
+user	4m1.423s
+sys	0m1.384s
