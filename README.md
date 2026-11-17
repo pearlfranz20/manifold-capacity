@@ -47,8 +47,8 @@ Simulated alpha_c for points: 1.92 +/- 0.05 (N = 25), 2.01 +/- 0.05 (N = 50), 1.
 
 Lines are the mean-field formula, dots are SOCP simulations at N = 50 (6 draws per point). Across 18 conditions the mean absolute relative error is 3.7%. Largest mismatches:
 
-- D = 20, R = 4: simulation 0.050 vs theory 0.053 (12% low). Here the critical P is only about 2 or 3 at N = 50, so the estimate is quantized in steps of 1/N = 0.02. This is a finite-size effect, not a theory failure.
-- D = 2, R = 1: simulation 0.697 vs exact 2/3 (4.5% high). D = 5, R = 1: 0.373 vs 0.333 (12% high). Simulations at N = 50 tend to sit slightly above theory around R ~ 1. I attribute this to finite N (the sphere axes are random Gaussian vectors, so they are only approximately orthonormal and orthogonal to the centers at N = 50), but I did not confirm it by scaling N.
+- D = 5, R = 1: simulation 0.373 vs exact 0.333 (12% high). This is the largest gap. D = 2, R = 1 is also high, 0.697 vs exact 2/3 (4.5%). Simulations at N = 50 tend to sit slightly above theory around R ~ 1. I attribute this to finite N (the sphere axes are random Gaussian vectors, so they are only approximately orthonormal and orthogonal to the centers at N = 50), but I did not confirm it by scaling N.
+- D = 20: simulation sits 2 to 7% below theory at every radius (7.3% low at R = 0.5, 6.7% low at R = 0.1, 5.3% low at R = 4). At R = 4 the critical P is only about 2 at N = 50, so each draw is quantized in steps of 1/N = 0.02 and the 0.003 gap is smaller than what a 6-draw mean can resolve.
 - The large-D approximation (dashed) matches the full formula for R >= 1 at D = 20 and fails badly for small R, as expected since it needs R sqrt(D) >> 1.
 
 The theory also passes the exact check alpha(R = 1, D) = 2/(D+1) to 1e-6 (unit test).
@@ -122,7 +122,7 @@ res["alpha"], res["R"], res["D"]
 ## Caveats
 
 - Everything is at margin kappa = 0. The sphere formula supports kappa > 0, but the estimator and simulations do not.
-- Simulations use modest N (50 to 200) and 5 to 60 draws per point. The standard errors in the figures are across draws. Finite-size effects are visible when the critical P is small (high D, large R).
+- Simulations use modest N (25 to 200) and 5 to 60 draws per point. The standard errors in the figures are across draws. Finite-size effects are visible when the critical P is small (high D, large R).
 - The R_M and D_M definitions follow the paper's anchor-point definitions, but my handling of the center coordinate (taking the component orthogonal to the center as the "axis" part) is a simplification of the reference code. alpha_M itself does not depend on this choice.
 - Spheres that the SOCP solver reports as "optimal_inaccurate" are counted as separable.
 
